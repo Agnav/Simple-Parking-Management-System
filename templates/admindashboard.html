@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/admindash.css') }}"
+    />
+    <title>Ticket</title>
+  </head>
+  <nav>
+    <div class="nav__logo">Park-in</div>
+    <div class="nav__items">
+      <div class="nav__item"><a href="#">check_ticket</a></div>
+      <div class="nav__item"><a href="#history">history</a></div>
+      <!-- <div class="nav__item"><a href="#">contact</a></div> -->
+      <div class="nav__item">
+        <a href="/logout"><button class="btn">LOGOUT</button></a>
+      </form>
+      </div>
+    </div>
+  </nav>
+  <body>
+    
+      <section id="ticket">
+        <div class="container_ticket">
+          <div class="hero_ticket">
+            <div class="ticket">
+              <div class="ticket_header"><h2>Your Ticket</h2></div>
+              <form method="POST" action="/login">  
+              <div class="details_input"><input class="inpt" input="text" name="book" placeholder="Booking ID" required></p></div>
+
+              <div class="ticket_body">
+                <div class="ticket_body_left">
+                  <div class="details"><p>Username :</p></div>
+                  <div class="details"><p>Slot :</p></div>
+                  <div class="details"><p>Start Time :</p></div>
+                  <div class="details"><p>End Time :</p></div>
+                </div>
+                <div class="ticket_body_right">
+                  {% if valid %}
+
+                  <div class="details">{{ book[0]}}</div>
+                  <div class="details">{{ book[1] }}</div>
+                  <div class="details">{{ book[2] }}</div>
+                  <div class="details">{{ book[3] }}</div>
+
+
+                  {% elif invalid_error %}
+               
+                      <div class="details_error">no data</div>
+                      <div class="details_error">no data</div>
+                      <div class="details_error">no data</div>
+                      <div class="details_error">no data</div>
+                
+  
+                  {% else %}
+  
+                  <div class="details_error">&nbsp; </div>
+                  <div class="details_error">&nbsp; </div>
+                  <div class="details_error">&nbsp; </div>
+                  <div class="details_error">&nbsp; </div>
+                  
+  
+                  {% endif %}
+                  
+                </div>
+              </div>
+              <div class="details validity">{% if invalid_error %}
+                <p class="red">INVLAID BOOKING ID</p>
+                {% elif valid %}
+                <p class="green">VLAID BOOKING ID</p>
+                {% else %}
+                <p>&nbsp;</p>
+                {% endif %}</div>  
+            </div>
+          </div>
+          
+          <button type="submit" class="btn">CHECK TICKET</button></form>
+        </div>
+      </section>
+
+    
+    <div class="container" id="history">
+      <h2>Slot Booked History</h2>
+      <div class="hero">
+        
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Slot Booked</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>BookingID</th>
+              <th>Mail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data will be dynamically inserted here -->
+        {% for user in data %}
+          <tr>
+              <td>{{ user[0] }}</td>
+              <td>{{ user[1] }}</td>
+              <td>{{ user[2] }}</td>
+              <td>{{ user[3] }}</td>
+              <td>{{ user[4] }}</td>
+              <td>{{ user[5] }}</td>
+          </tr>
+      {% endfor %}
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+       
+      </table>
+    </body>
+</html>

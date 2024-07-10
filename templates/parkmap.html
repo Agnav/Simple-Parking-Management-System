@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/parkmap.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <nav>
+    <div class="nav__logo">Park-in</div>
+    <div class="nav__items">
+      <div class="nav__item"><a href="/">home</a></div>
+      <div class="nav__item"><a href="/">my_ticket</a></div>
+      <!-- <div class="nav__item"><a href="#">contact</a></div> -->
+      <div class="nav__item">
+        <a href="#signup"><button class="btn">LOGOUT</button></a>
+      </div>
+    </div>
+  </nav>
+  <body>
+    {% if parkmap_error %}
+
+    <div class="alert" id="alert">
+      THIS SLOT IS ALREADY BOOKED
+      <button class="btn" onclick="this.parentElement.style.display='none';">
+        CLOSE &times;
+      </button>
+    </div>
+
+    {% endif %}
+
+    <div class="container">
+      <div class="hero">
+        <div class="input_slots">
+          <h4>Reserve Slot</h4>
+          <form method="POST" action="/payment">
+            <div class="forminputs">
+              <div class="input_box">
+                <label>Selected Slot</label>
+
+                <input
+                  type="text"
+                  name="slot"
+                  id="selected-slot"
+                  required
+                  readonly
+                />
+              </div>
+              <div class="input_box">
+                <label>Start Time</label>
+                <input
+                  type="time"
+                  name="start"
+                  id="start-time"
+                  placeholder="Start Time"
+                  required
+                />
+              </div>
+              <div class="input_box">
+                <label>End Time</label>
+                <input
+                  type="time"
+                  name="end"
+                  id="end-time"
+                  placeholder="End Time"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="logbutton">
+              <button type="submit" class="btn_log">Submit</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="slots" id="cont1">
+          <div class="flex1">
+            <div class="item">
+              <div class="square" id="B1">B1</div>
+              <div class="square" id="B2">B2</div>
+              <div class="square" id="B3">B3</div>
+              <div class="square" id="B4">B4</div>
+              <div class="square" id="B5">B5</div>
+            </div>
+            <div class="item">
+              <div class="square" id="C1">C1</div>
+              <div class="square" id="C2">C2</div>
+              <div class="square" id="C3">C3</div>
+              <div class="square" id="C4">C4</div>
+              <div class="square" id="C5">C5</div>
+            </div>
+          </div>
+
+          <div class="flex2">
+            <div class="item">
+              <div class="square" id="C6">C6</div>
+              <div class="square" id="C7">C7</div>
+              <div class="square" id="C8">C8</div>
+              <div class="square" id="C9">C9</div>
+              <div class="square" id="C10">C10</div>
+            </div>
+            <div class="item">
+              <div class="square" id="B6">B6</div>
+              <div class="square" id="B7">B7</div>
+              <div class="square" id="B8">B8</div>
+              <div class="square" id="B9">B9</div>
+              <div class="square" id="B10">B10</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/js/parkmap.js"></script>
+  </body>
+</html>
