@@ -7,5 +7,12 @@ The Parking Management System is designed to streamline and automate parking ope
 # Install and Execute
 
 1. Create and activate virtual enviroment
+
+```
+
+pip install python3
+
+```
+
 2. Install the dependencies
 3. Run app.py.
